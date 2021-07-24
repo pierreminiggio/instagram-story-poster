@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
     inputs:
-      username:
+      account:
         description: "Instagram account stored in repository secrets"
         required: true
         default: "PIERREMINIGGIO"
@@ -25,9 +25,9 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - uses: actions/setup-python@v2
-      - run: echo $username
+      - run: echo $account
         env:
-          username: ${{ join('ZIZI_', github.event.inputs.username) }}
+          account: ${{ join('PASSWORD_', github.event.inputs.account) }}
       - run: sudo apt update
       - run: pip install instagrapi moviepy Pillow
       - run: python main.py $username $password $video_url $proxy > upload.json
