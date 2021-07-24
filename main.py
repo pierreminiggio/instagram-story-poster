@@ -16,7 +16,6 @@ proxy = args[4] if 4 in args else None
 
 video_path = download_video_if_needed(video_url, proxy)
 
-print(video_path)
 story_id = upload_story(username, password, video_path, proxy)
 os.remove(video_path)
 
