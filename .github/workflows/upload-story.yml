@@ -9,6 +9,10 @@ on:
         description: "Video URL"
         required: true
         default: "https://storage.miniggiodev.fr/test/story.mp4"
+      proxy:
+        description: "Proxy"
+        required: true
+        default: "http://toulouse.ggio.fr:808"
 
 name: Upload Story
 jobs:
