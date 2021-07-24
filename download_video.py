@@ -1,8 +1,9 @@
 import base64
+import http
 import os
 import requests
 
-def download_video_if_needed(video_url: str) -> str:
+def download_video_if_needed(video_url: str, proxy:str = None) -> str:
 
     video_folder_path = 'videos'
 
@@ -12,7 +13,10 @@ def download_video_if_needed(video_url: str) -> str:
     video_path = video_folder_path + os.path.sep + base64.urlsafe_b64encode(video_url.encode()).decode() + '.mp4'
 
     if os.path.isfile(video_path) == False:
-        video_download_request = requests.get(video_url, allow_redirects=True)
+        video_download_request = requests.get(video_url, allow_redirects=True, proxies={
+            "http": proxy,
+            "https": proxy
+        } if proxy != None else None)
         open(video_path, 'wb').write(video_download_request.content)
 
     return video_path
