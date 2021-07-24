@@ -32,7 +32,7 @@ jobs:
       - run: pip install instagrapi moviepy Pillow
       - run: echo $password
         env:
-          password: ${{ secrets[join('PASSWORD_', github.event.inputs.account)] }}
+          password: ${{ join('PASSWORD_', github.event.inputs.account) }}
       - run: python main.py $username $password $video_url $proxy > upload.json
         env:
           username: ${{ secrets.USERNAME_PIERREMINIGGIO }}
