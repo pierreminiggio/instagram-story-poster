@@ -21,6 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - uses: actions/setup-python@v2
+      - run: echo $account
+        env:
+          account: ${{ github.event.inputs.account }}
       - run: sudo apt update
       - run: pip install Pillow instagrapi
       - run: python main.py $username $password $video_url > upload.json
