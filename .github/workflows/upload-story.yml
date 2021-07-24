@@ -1,0 +1,39 @@
+on:
+  workflow_dispatch:
+    inputs:
+      account:
+        description: "Instagram account stored in repository secrets"
+        required: true
+        default: "PIERREMINIGGIO"
+      video_url:
+        description: "Video URL"
+        required: true
+        default: "https://storage.miniggiodev.fr/test/story.mp4"
+      caption:
+        description: "Story caption"
+        required: true
+        default: "Test depuis une action Github"
+
+name: Upload Story
+jobs:
+  get:
+    name: Upload Story
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.8']
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-python@v2
+      - run: sudo apt update
+      - run: pip install instagrapi
+      - run: python main.py $username $numberOfVideos > upload.json
+        env:
+          username: ${{ secrets[join('USERNAME_', github.event.inputs.account)] }}
+          password: ${{ secrets[join('PASSWORD_', github.event.inputs.account)] }}
+          video_url: ${{ github.event.inputs.video_url }}
+          caption: ${{ github.event.inputs.caption }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: upload.json
+          path: upload.json
