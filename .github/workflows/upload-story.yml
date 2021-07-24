@@ -26,8 +26,9 @@ jobs:
       - uses: actions/checkout@main
       - uses: actions/setup-python@v2
       - run: sudo apt update
+      - run: pip install PIL
       - run: pip install instagrapi
-      - run: python main.py $username $numberOfVideos > upload.json
+      - run: python main.py $username $password $video_url $caption > upload.json
         env:
           username: ${{ secrets[join('USERNAME_', github.event.inputs.account)] }}
           password: ${{ secrets[join('PASSWORD_', github.event.inputs.account)] }}
