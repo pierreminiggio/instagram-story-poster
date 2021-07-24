@@ -29,7 +29,7 @@ jobs:
         env:
           account: ${{ github.event.inputs.account }}
       - run: sudo apt update
-      - run: pip install Pillow instagrapi
+      - run: pip install instagrapi moviepy Pillow
       - run: python main.py $username $password $video_url $proxy > upload.json
         env:
           username: ${{ secrets.USERNAME_PIERREMINIGGIO }}
