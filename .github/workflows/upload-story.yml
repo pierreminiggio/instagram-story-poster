@@ -9,10 +9,6 @@ on:
         description: "Video URL"
         required: true
         default: "https://storage.miniggiodev.fr/test/story.mp4"
-      caption:
-        description: "Story caption"
-        required: true
-        default: "Test depuis une action Github"
 
 name: Upload Story
 jobs:
@@ -26,14 +22,12 @@ jobs:
       - uses: actions/checkout@main
       - uses: actions/setup-python@v2
       - run: sudo apt update
-      - run: pip install Pillow
-      - run: pip install instagrapi
-      - run: python main.py $username $password $video_url $caption > upload.json
+      - run: pip install Pillow instagrapi
+      - run: python main.py $username $password $video_url > upload.json
         env:
           username: ${{ secrets[join('USERNAME_', github.event.inputs.account)] }}
           password: ${{ secrets[join('PASSWORD_', github.event.inputs.account)] }}
           video_url: ${{ github.event.inputs.video_url }}
-          caption: '${{ github.event.inputs.caption }}'
       - uses: actions/upload-artifact@v2
         with:
           name: upload.json

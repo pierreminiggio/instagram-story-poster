@@ -6,8 +6,8 @@ import sys
 args = sys.argv
 print(args)
 
-if len(args) != 5:
-    print('Use like this : python main.py username password video_url caption')
+if len(args) != 4:
+    print('Use like this : python main.py <username> <password> <video_url>')
     sys.exit()
 
 username = args[1]
@@ -18,7 +18,7 @@ caption = args[4]
 video_path = download_video_if_needed(video_url)
 
 print(video_path)
-story_id = upload_story(username, password, video_path, caption)
+story_id = upload_story(username, password, video_path)
 os.remove(video_path)
 
 generated_thumbnail_path = video_path + '.jpg'
