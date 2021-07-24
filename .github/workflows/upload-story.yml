@@ -25,15 +25,12 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - uses: actions/setup-python@v2
-      - run: echo $account
-        env:
-          account: ${{ format('{0}{1}', 'PASSWORD_', github.event.inputs.account) }}
       - run: sudo apt update
       - run: pip install instagrapi moviepy Pillow
       - run: python main.py $username $password $video_url $proxy > upload.json
         env:
-          username: ${{ secrets.USERNAME_PIERREMINIGGIO }}
-          password: ${{ secrets[join('PASSWORD_', github.event.inputs.account)] }}
+          username: ${{ secrets[format('{0}{1}', 'USERNAME_', github.event.inputs.account)] }}
+          password: ${{ secrets[format('{0}{1}', 'PASSWORD_', github.event.inputs.account)] }}
           video_url: ${{ github.event.inputs.video_url }}
           proxy: ${{ github.event.inputs.proxy }}
       - uses: actions/upload-artifact@v2
