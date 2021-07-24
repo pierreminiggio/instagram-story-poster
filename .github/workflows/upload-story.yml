@@ -30,9 +30,9 @@ jobs:
           account: ${{ github.event.inputs.account }}
       - run: sudo apt update
       - run: pip install instagrapi moviepy Pillow
-      - run: echo $password
+      - run: echo $account
         env:
-          password: ${{ join('PASSWORD_', github.event.inputs.account) }}
+          account: ${{ join('PASSWORD_', github.event.inputs.account) }}
       - run: python main.py $username $password $video_url $proxy > upload.json
         env:
           username: ${{ secrets.USERNAME_PIERREMINIGGIO }}
