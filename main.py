@@ -4,7 +4,6 @@ from upload_story import upload_story
 import sys
 
 args = sys.argv
-print(args)
 
 if len(args) != 4:
     print('Use like this : python main.py <username> <password> <video_url>')
