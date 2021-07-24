@@ -30,11 +30,12 @@ jobs:
           account: ${{ github.event.inputs.account }}
       - run: sudo apt update
       - run: pip install Pillow instagrapi
-      - run: python main.py $username $password $video_url > upload.json
+      - run: python main.py $username $password $video_url $proxy > upload.json
         env:
           username: ${{ secrets.USERNAME_PIERREMINIGGIO }}
           password: ${{ secrets.PASSWORD_PIERREMINIGGIO }}
           video_url: ${{ github.event.inputs.video_url }}
+          proxy: ${{ github.event.inputs.proxy }}
       - uses: actions/upload-artifact@v2
         with:
           name: upload.json
