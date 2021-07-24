@@ -33,7 +33,7 @@ jobs:
           username: ${{ secrets[join('USERNAME_', github.event.inputs.account)] }}
           password: ${{ secrets[join('PASSWORD_', github.event.inputs.account)] }}
           video_url: ${{ github.event.inputs.video_url }}
-          caption: ${{ github.event.inputs.caption }}
+          caption: '${{ github.event.inputs.caption }}'
       - uses: actions/upload-artifact@v2
         with:
           name: upload.json
