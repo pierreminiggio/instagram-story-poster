@@ -33,7 +33,7 @@ jobs:
       - run: python main.py $username $password $video_url $proxy > upload.json
         env:
           username: ${{ secrets.USERNAME_PIERREMINIGGIO }}
-          password: ${{ secrets.PASSWORD_PIERREMINIGGIO }}
+          password: ${{ secrets[join('PASSWORD_', github.event.inputs.account)] }}
           video_url: ${{ github.event.inputs.video_url }}
           proxy: ${{ github.event.inputs.proxy }}
       - uses: actions/upload-artifact@v2
