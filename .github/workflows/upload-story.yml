@@ -25,7 +25,7 @@ jobs:
       - run: pip install Pillow instagrapi
       - run: python main.py $username $password $video_url > upload.json
         env:
-          password: ${{ secrets[join('USERNAME_', github.event.inputs.account)] }}
+          username: ${{ secrets[join('USERNAME_', github.event.inputs.account)] }}
           password: ${{ secrets[join('PASSWORD_', github.event.inputs.account)] }}
           video_url: ${{ github.event.inputs.video_url }}
       - uses: actions/upload-artifact@v2
