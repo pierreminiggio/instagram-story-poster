@@ -12,7 +12,6 @@ if len(args) != 4:
 username = args[1]
 password = args[2]
 video_url = args[3]
-caption = args[4]
 
 video_path = download_video_if_needed(video_url)
 
