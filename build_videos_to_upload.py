@@ -8,7 +8,7 @@ from typing import List
 def build_videos_to_upload(video_url: str, video_path: str) -> List[str]:
 
     duration = get_video_duration(video_path)
-    video_max_duration = 14.5
+    video_max_duration = 15
 
     if duration <= video_max_duration:
         return [video_path]
@@ -30,4 +30,3 @@ def build_videos_to_upload(video_url: str, video_path: str) -> List[str]:
         videos_to_upload.append(video_to_build_path)
 
     return videos_to_upload
-    
