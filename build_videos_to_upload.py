@@ -8,6 +8,7 @@ from typing import List
 def build_videos_to_upload(video_url: str, video_path: str) -> List[str]:
 
     duration = get_video_duration(video_path)
+    whatever = 0.3
     video_min_duration = 7
     video_max_duration = 15
 
@@ -30,8 +31,12 @@ def build_videos_to_upload(video_url: str, video_path: str) -> List[str]:
             end_time = duration
 
         clip_duration = end_time - start_time
+
+        if whatever >= clip_duration:
+            continue
+
         if clip_duration < video_min_duration:
-            start_time = end_time - video_min_duration
+            start_time = round(end_time - video_min_duration)
 
 
         video_to_build_path = video_folder_path + os.path.sep + downloaded_video_file_name + '_' + str(start_time).replace('.', '-') + '_' + str(end_time).replace('.', '-') + '.mp4'
