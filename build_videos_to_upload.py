@@ -10,7 +10,7 @@ def build_videos_to_upload(video_url: str, video_path: str) -> List[str]:
     duration = get_video_duration(video_path)
     whatever = 0.3
     video_min_duration = 7
-    video_max_duration = 15
+    video_max_duration = 14.9
 
     if duration < video_min_duration:
         return []
