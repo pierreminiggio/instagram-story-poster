@@ -22,13 +22,23 @@ videos_to_upload = build_videos_to_upload(video_url, video_path)
 
 story_ids = []
 
+errors = []
+
 for video_to_upload in videos_to_upload:
 
-    story_id = upload_story(username, password, video_to_upload, proxy)
+    try:
+        story_id = upload_story(username, password, video_to_upload, proxy)
+    except Exception as e:
+        errors.append(e)
+
     clean_after_upload(video_to_upload)
 
     story_ids.append(story_id)
 
 clean_after_upload(video_path)
+
+if len(story_ids) == 0 and len(errors) > 1:
+    print(json.dumps(errors, separators=(',', ':')))
+    raise Exception('Error :\'(')
 
 print(json.dumps(story_ids, separators=(',', ':')))
