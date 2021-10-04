@@ -25,7 +25,8 @@ story_ids = []
 errors = []
 
 for video_to_upload in videos_to_upload:
-
+    story_id = None
+    
     try:
         story_id = upload_story(username, password, video_to_upload, proxy)
     except Exception as e:
@@ -33,7 +34,8 @@ for video_to_upload in videos_to_upload:
 
     clean_after_upload(video_to_upload)
 
-    story_ids.append(story_id)
+    if story_id:
+        story_ids.append(story_id)
 
 clean_after_upload(video_path)
 
