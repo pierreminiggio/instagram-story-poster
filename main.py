@@ -30,7 +30,8 @@ for video_to_upload in videos_to_upload:
     try:
         story_id = upload_story(username, password, video_to_upload, proxy)
     except Exception as e:
-        errors.append(e)
+        exc_info = sys.exc_info()
+        errors.append(''.join(traceback.format_exception(*exc_info)))
 
     clean_after_upload(video_to_upload)
 
