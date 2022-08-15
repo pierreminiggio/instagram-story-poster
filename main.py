@@ -18,6 +18,9 @@ video_url = args[3]
 proxy = args[4] if 4 in args else None
 instagram_code_beggar_api_url = args[5] if 5 in args else None
 instagram_code_beggar_api_token = args[6] if 6 in args else None
+print(instagram_code_beggar_api_url)
+print(instagram_code_beggar_api_token)
+sys.exit()
 
 video_path = download_video_if_needed(video_url, proxy)
 
