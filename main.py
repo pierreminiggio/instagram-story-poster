@@ -44,7 +44,7 @@ for video_to_upload in videos_to_upload:
 clean_after_upload(video_path)
 
 if len(story_ids) == 0 and len(errors) > 0:
-    print(json.dumps(errors, separators=(',', ':')))
-    raise Exception('Error :\'(')
+    errors = json.dumps(errors, separators=(',', ':'))
+    raise Exception('Error :\'( ' + errors)
 
 print(json.dumps(story_ids, separators=(',', ':')))
