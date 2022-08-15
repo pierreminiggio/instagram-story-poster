@@ -1,7 +1,14 @@
 from contextlib import redirect_stdout
 from instagrapi import Client
 
-def upload_story(username: str, password: str, video_path: str, proxy: str = None, instagram_code_beggar_api_url: str = None, instagram_code_beggar_api_token: str = None) -> int:
+def upload_story(
+    username: str,
+    password: str,
+    video_path: str,
+    proxy: str = None,
+    instagram_code_beggar_api_url: str = None,
+    instagram_code_beggar_api_token: str = None
+) -> int:
     client = Client({}, proxy)
     client.logger.disabled = True
     
