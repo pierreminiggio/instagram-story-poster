@@ -14,8 +14,9 @@ def upload_story(
     client.logger.disabled = True
     
     def challenge_code_handler(self, username: str, choice=None):
-        if instagram_code_beggar_api_url == None AND instagram_code_beggar_api_token == None:
+        if instagram_code_beggar_api_url == None and instagram_code_beggar_api_token == None:
             raise Exception('No code beggar configuration')
+
         headers = {'Authorization': 'Bearer ' + instagram_code_beggar_api_token}
         beggar_request = requests.get(instagram_code_beggar_api_url + username, headers=headers)
         
