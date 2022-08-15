@@ -13,7 +13,7 @@ def upload_story(
     client = Client({}, proxy)
     client.logger.disabled = True
     
-    def challenge_code_handler(self, username: str, choice=None):
+    def challenge_code_handler(username: str, choice=None):
         if instagram_code_beggar_api_url == None and instagram_code_beggar_api_token == None:
             raise Exception('No code beggar configuration')
 
