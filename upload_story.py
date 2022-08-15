@@ -23,7 +23,7 @@ def upload_story(
         if beggar_request.status_code != 200:
             raise Exception('Beggar didn\'t return a 200')
             
-        response_text = response.text
+        response_text = beggar_request.text
         
         if not response_text:
             raise Exception('Beggar returned an empty response')
