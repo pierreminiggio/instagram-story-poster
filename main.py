@@ -4,6 +4,7 @@ from download_video import download_video_if_needed
 import json
 from upload_story import upload_story
 import sys
+import traceback
 
 args = sys.argv
 
