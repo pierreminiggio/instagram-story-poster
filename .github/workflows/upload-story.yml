@@ -37,7 +37,7 @@ jobs:
           instagram_code_beggar_api_url: ${{ secrets.INSTAGRAM_CODE_BEGGAR_API_URL }}
           instagram_code_beggar_api_token: ${{ secrets.INSTAGRAM_CODE_BEGGAR_API_TOKEN }}
           
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: upload.json
           path: upload.json
