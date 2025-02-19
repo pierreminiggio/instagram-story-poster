@@ -26,7 +26,7 @@ jobs:
       - uses: actions/checkout@main
       - uses: actions/setup-python@v2
       - run: sudo apt update
-      - run: pip install instagrapi moviepy Pillow
+      - run: pip install instagrapi moviepy==1.0.3 Pillow
       - run: sudo apt-get install ffmpeg
       - run: python main.py $username $password $video_url $proxy $instagram_code_beggar_api_url $instagram_code_beggar_api_token > upload.json
         env:
