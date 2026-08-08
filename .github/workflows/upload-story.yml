@@ -25,6 +25,8 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
       - run: sudo apt update
       - run: pip install instagrapi moviepy==1.0.3 Pillow
       - run: sudo apt-get install ffmpeg

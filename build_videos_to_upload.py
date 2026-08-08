@@ -8,12 +8,16 @@ from typing import List
 def build_videos_to_upload(video_url: str, video_path: str) -> List[str]:
 
     duration = get_video_duration(video_path)
+
+    if duration <= 0:
+        raise Exception(
+            'Downloaded video at ' + video_path + ' has an invalid duration (' + str(duration)
+            + 's). The download likely failed or returned a corrupted/empty file.'
+        )
+
     whatever = 0.3
     video_min_duration = 7
     video_max_duration = 14.9
-
-    if duration < video_min_duration:
-        return []
 
     if duration <= video_max_duration:
         return [video_path]
