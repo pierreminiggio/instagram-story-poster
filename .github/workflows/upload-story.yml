@@ -28,7 +28,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - run: sudo apt update
-      - run: pip install instagrapi Pillow
+      - run: pip install "instagrapi[video]" Pillow
       - run: pip install --no-deps "moviepy==2.2.1"
       - run: sudo apt-get install ffmpeg
       - run: python main.py $username $password $video_url $proxy $instagram_code_beggar_api_url $instagram_code_beggar_api_token > upload.json
