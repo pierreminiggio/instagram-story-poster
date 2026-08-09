@@ -8,16 +8,18 @@ import traceback
 
 args = sys.argv
 
-if len(args) != 4 and len(args) != 7:
-    print('Use like this : python main.py <username> <password> <video_url> [proxy] [instagram_code_beggar_api_url] [instagram_code_beggar_api_token]')
+if len(args) < 4:
+    print('Use like this : python main.py <username> <password> <video_url> [proxy] [instagram_code_beggar_api_url] [instagram_code_beggar_api_token] [session_json]')
     sys.exit()
 
 username = args[1]
 password = args[2]
 video_url = args[3]
-proxy = args[4] if len(args) >= 5 else None
-instagram_code_beggar_api_url = args[5] if len(args) >= 6  else None
-instagram_code_beggar_api_token = args[6] if len(args) >= 7 else None
+proxy = (args[4] or None) if len(args) >= 5 else None
+instagram_code_beggar_api_url = (args[5] or None) if len(args) >= 6  else None
+instagram_code_beggar_api_token = (args[6] or None) if len(args) >= 7 else None
+session_json = (args[7] or None) if len(args) >= 8 else None
+session_output_path = 'session.json'
 
 video_path = download_video_if_needed(video_url, proxy)
 
@@ -31,7 +33,7 @@ for video_to_upload in videos_to_upload:
     story_id = None
     
     try:
-        story_id = upload_story(username, password, video_to_upload, proxy, instagram_code_beggar_api_url, instagram_code_beggar_api_token)
+        story_id = upload_story(username, password, video_to_upload, proxy, instagram_code_beggar_api_url, instagram_code_beggar_api_token, session_json, session_output_path)
     except Exception as e:
         exc_info = sys.exc_info()
         errors.append(''.join(traceback.format_exception(*exc_info)))
