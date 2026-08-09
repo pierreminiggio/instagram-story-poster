@@ -31,7 +31,14 @@ def upload_story(
         return response_text
 
     client.challenge_code_handler = challenge_code_handler
-    client.login(username, password)
+    logged_in = client.login(username, password)
+
+    if not logged_in:
+        raise Exception(
+            'Login failed for ' + username
+            + ' (instagrapi returned False without raising an exception - '
+            + 'check the account status, proxy, or whether Instagram is requiring a challenge)'
+        )
 
     with redirect_stdout(None):
         story = client.video_upload_to_story(video_path)
